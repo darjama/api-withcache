@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/darjama/hatchways-be-assessment#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "bluebird": "^3.7.2",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
