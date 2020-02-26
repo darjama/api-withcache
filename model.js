@@ -1,8 +1,6 @@
-var express = require("express");
-var app = express();
 var fetch = require("node-fetch");
 
-var fetchPosts = function(req, callback) {
+function fetchPosts(req, callback) {
   var tagsParsed = req.query.tags.split(',');
   var sortBy;
   req.query.sortBy ? sortBy = req.query.sortBy : sortBy = 'id';
@@ -17,22 +15,23 @@ var fetchPosts = function(req, callback) {
   var resultArr=[]; //array of promises returned when fetching records
   for (let i = 0; i < tagsParsed.length; i ++) {
     resultArr.push(
-    fetch('https://hatchways.io/api/assessment/blog/posts?tag=' + tagsParsed[i])
+      fetch('https://hatchways.io/api/assessment/blog/posts?tag=' + tagsParsed[i])
       .then(response => response.json())
       .then(data => {
         if (tagsParsed.length === 1) {
           result = data.posts;
         } else {
           for (var j = 0; j < data.posts.length; j++) {
-
-            if (resultIds.indexOf(data.posts[j].id === -1)) {
+            if (resultIds.indexOf(data.posts[j].id) === -1) {
               resultIds.push(data.posts[j].id);
               result.push(data.posts[j]);
             }
           }
         }
       })
-      .catch(err => new Error())
+      .catch(function(err){
+        throw new Error('problem with fetching data ' + err)
+      })
       )
 
   }
@@ -42,14 +41,17 @@ var fetchPosts = function(req, callback) {
       if (a[sortBy] > b[sortBy]) {
         return aGTB;
       }
-      if (a[sortBy] === b[sortBy]) {
-        return 0;
+      if (a[sortBy] < b[sortBy]) {
+        return aLTB;
       }
-      return aLTB;
+      return 0;
     })
   })
-  .then( results =>
-    callback(results));
+  .then( function(results) {
+    callback(results)})
+  .catch(function(err){
+    throw new Error('problem with fetching data ' + err)
+  })
 }
 
 module.exports = fetchPosts;
