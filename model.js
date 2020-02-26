@@ -1,6 +1,5 @@
 var express = require("express");
 var app = express();
-var Promise = require("bluebird");
 var fetch = require("node-fetch");
 
 var fetchPosts = function(req, callback) {
