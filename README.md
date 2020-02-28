@@ -1,8 +1,7 @@
-# hatchways-be-assessment
-Hatchways Backend Assessment
+# API with cache
 
-Thanks for the opportunity to take this assessment. I'd be very interested in hearing any feedback you may have.
+This is my test of creating an API with cache.
 
-Thanks,
-Daryl Marco
-darmarco@gmail.com
+Use 'npm install' to install required modules.
+
+The fetch URL is in the config.json file, which isn't included in this repository. Please create a new config.json with a URL property if needed.

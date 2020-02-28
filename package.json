@@ -1,7 +1,7 @@
 {
-  "name": "hatchways-be-assessment",
+  "name": "api-withcache",
   "version": "1.0.0",
-  "description": "Hatchways Backend Assessment",
+  "description": "API with cache",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test jest --forceExit",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/darjama/hatchways-be-assessment.git"
+    "url": "git+https://github.com/darjama/api-withcache.git"
   },
   "author": "darjama",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/darjama/hatchways-be-assessment/issues"
+    "url": "https://github.com/darjama/api-withcache/issues"
   },
-  "homepage": "https://github.com/darjama/hatchways-be-assessment#readme",
+  "homepage": "https://github.com/darjama/api-withcache#readme",
   "dependencies": {
     "apicache": "^1.5.3",
     "express": "^4.17.1",
