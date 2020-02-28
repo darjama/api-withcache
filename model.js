@@ -10,7 +10,7 @@ function fetchPosts(req, callback) {
     aGTB = -1;
     aLTB = 1;
   }
-  var result = []; //collected records returned from API
+  var result = {}; //collected records returned from API
   var resultIds = []; //ids collected to prevent duplicates; not used for single tag
   var resultArr=[]; //array of promises returned when fetching records
   for (let i = 0; i < tagsParsed.length; i ++) {
@@ -18,26 +18,19 @@ function fetchPosts(req, callback) {
       fetch('https://hatchways.io/api/assessment/blog/posts?tag=' + tagsParsed[i])
       .then(response => response.json())
       .then(data => {
-        if (tagsParsed.length === 1) {
-          result = data.posts;
-        } else {
-          for (var j = 0; j < data.posts.length; j++) {
-            if (resultIds.indexOf(data.posts[j].id) === -1) {
-              resultIds.push(data.posts[j].id);
-              result.push(data.posts[j]);
-            }
-          }
+        for (var j = 0; j < data.posts.length; j++) {
+          let record = data.posts[j];
+          result[record.id] = record;
         }
       })
       .catch(function(err){
         throw new Error('problem with fetching data ' + err)
       })
-      )
-
+    )
   }
 
   Promise.all(resultArr).then(function() {
-    return result.sort((a,b) => {
+    return Object.values(result).sort((a,b) => {
       if (a[sortBy] > b[sortBy]) {
         return aGTB;
       }
@@ -50,7 +43,7 @@ function fetchPosts(req, callback) {
   .then( function(results) {
     callback(results)})
   .catch(function(err){
-    throw new Error('problem with fetching data ' + err)
+    throw new Error('problem with returning data ' + err)
   })
 }
 
