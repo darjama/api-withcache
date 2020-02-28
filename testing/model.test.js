@@ -1,4 +1,4 @@
-var fetchPosts = require("./model");
+var fetchPosts = require("../models/model");
 var sampleData = require("./sampleData");
 
 describe('Testing calls to Hatchways API', () => {

@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
-var ping = require("./ping");
-var posts = require("./posts");
+var ping = require("../controllers/ping");
+var posts = require("../controllers/posts");
 var apicache = require('apicache');
 var port = 3000;
 

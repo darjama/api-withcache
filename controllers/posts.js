@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var fetchPosts = require('./model.js');
+var fetchPosts = require('../models/model.js');
 
 router.get('/', (req, res) => {
   const sortByValidation = ['id', 'reads', 'likes', 'popularity'];

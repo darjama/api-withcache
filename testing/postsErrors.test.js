@@ -1,6 +1,6 @@
 var request = require('supertest');
 var express = require('express');
-var app = require('./index');
+var app = require('../server/index');
 
 describe('Ping Test', () => {
   it('should receive an error for post requests without tags query', async () => {
